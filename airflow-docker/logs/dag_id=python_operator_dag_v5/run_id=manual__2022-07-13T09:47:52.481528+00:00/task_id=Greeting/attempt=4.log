@@ -1,0 +1,32 @@
+[2022-07-13 09:53:57,425] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: python_operator_dag_v5.Greeting manual__2022-07-13T09:47:52.481528+00:00 [queued]>
+[2022-07-13 09:53:57,445] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: python_operator_dag_v5.Greeting manual__2022-07-13T09:47:52.481528+00:00 [queued]>
+[2022-07-13 09:53:57,446] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-13 09:53:57,447] {taskinstance.py:1377} INFO - Starting attempt 4 of 6
+[2022-07-13 09:53:57,448] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-13 09:53:57,474] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): Greeting> on 2022-07-13 09:47:52.481528+00:00
+[2022-07-13 09:53:57,483] {standard_task_runner.py:52} INFO - Started process 5044 to run task
+[2022-07-13 09:53:57,488] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'python_operator_dag_v5', 'Greeting', 'manual__2022-07-13T09:47:52.481528+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/python_operator_dag.py', '--cfg-path', '/tmp/tmp4uv7icaq', '--error-file', '/tmp/tmptvrxi69j']
+[2022-07-13 09:53:57,490] {standard_task_runner.py:80} INFO - Job 33: Subtask Greeting
+[2022-07-13 09:53:57,626] {task_command.py:371} INFO - Running <TaskInstance: python_operator_dag_v5.Greeting manual__2022-07-13T09:47:52.481528+00:00 [running]> on host 8e2218deeaf2
+[2022-07-13 09:53:57,748] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=harshab
+AIRFLOW_CTX_DAG_ID=python_operator_dag_v5
+AIRFLOW_CTX_TASK_ID=Greeting
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-13T09:47:52.481528+00:00
+AIRFLOW_CTX_TRY_NUMBER=4
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-07-13T09:47:52.481528+00:00
+[2022-07-13 09:53:57,751] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/python_operator_dag.py", line 14, in greet
+    name = ti.xcoms_pull(task_ids='get_name')
+AttributeError: 'TaskInstance' object has no attribute 'xcoms_pull'
+[2022-07-13 09:53:57,768] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=python_operator_dag_v5, task_id=Greeting, execution_date=20220713T094752, start_date=20220713T095357, end_date=20220713T095357
+[2022-07-13 09:53:57,784] {standard_task_runner.py:97} ERROR - Failed to execute job 33 for task Greeting ('TaskInstance' object has no attribute 'xcoms_pull'; 5044)
+[2022-07-13 09:53:57,824] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-07-13 09:53:57,871] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
